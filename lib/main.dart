@@ -35,11 +35,10 @@ class MyApp extends StatelessWidget {
                 if (snap.connectionState == ConnectionState.waiting) {
                   print("loading");
                 }
-                print(snap.data);
-                print("after null");
                 return const Scaffold(
+                  backgroundColor: Colors.transparent,
                   body: Center(
-                    child: CircularProgressIndicator.adaptive(),
+                    child: CircularProgressIndicator(),
                   ),
                 );
               }

@@ -38,6 +38,25 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  String _timeWish(String timeString) {
+    DateTime time = DateTime.parse(timeString);
+    int timeH = int.parse(DateFormat.H().format(time));
+    String period = DateFormat('a').format(time);
+    if (timeH > 5 && timeH < 12) {
+      return "Good Morning";
+    } else if (timeH > 0 && timeH < 6) {
+      return "Early Morning";
+    } else if (timeH >= 12 && timeH < 16) {
+      return "Good Afternoon";
+    } else if (timeH > 15 && timeH < 19) {
+      return "Good evening";
+    } else if (timeH > 18 && timeH < 24) {
+      return "Good Night";
+    } else {
+      return "Good Day";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,8 +126,8 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(
                             height: 8,
                           ),
-                          const Text(
-                            "Good Morning",
+                          Text(
+                            _timeWish("${state.weather.date}"), //time wish
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
@@ -173,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       Text(
                                         DateFormat().add_jm().format(
-                                            state.weather.sunset!), //sunrise
+                                            state.weather.sunrise!), //sunrise
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: Colors.white),
@@ -204,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       Text(
                                         DateFormat().add_jm().format(
-                                            state.weather.sunrise!), //sunset
+                                            state.weather.sunset!), //sunset
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: Colors.white),

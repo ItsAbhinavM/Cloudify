@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherapp/bloc/weather_bloc_bloc.dart';
+import 'package:weatherapp/pages/nextDay.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -117,24 +118,29 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "📍 ${state.weather.areaName}", //location
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(
-                            height: 8,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "📍 ${state.weather.areaName}", //location
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                           Text(
                             _timeWish("${state.weather.date}"), //time wish
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 25),
+                                fontSize: 34),
                           ),
                           Image.asset(
-                              "assets/${_weatherImage(state.weather.weatherConditionCode)}.png"),
+                            "assets/${_weatherImage(state.weather.weatherConditionCode)}.png",
+                            scale: 1,
+                          ),
                           Center(
                             child: Text(
                               " ${state.weather.temperature!.celsius!.round()} ℃ ", //temperature
@@ -153,9 +159,6 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 25),
                             ),
                           ),
-                          SizedBox(
-                            height: 11,
-                          ),
                           Center(
                             child: Text(
                               DateFormat('EEEE dd |')
@@ -167,8 +170,37 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.white),
                             ),
                           ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              Center(
+                                child: Text(
+                                  "Next Days ",
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      foreground: Paint()
+                                        ..shader = const LinearGradient(
+                                            colors: <Color>[
+                                              Color.fromARGB(255, 199, 154, 86),
+                                              Color.fromARGB(255, 83, 35, 92),
+                                              //Colors.orange
+                                            ]).createShader(const Rect.fromLTRB(
+                                            125.0, 100.0, 35.0, 50.0))),
+                                ),
+                              ),
+                              const IconButton(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                ),
+                                onPressed: null,
+                              )
+                            ],
+                          ),
                           const SizedBox(
-                            height: 50,
+                            height: 10,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

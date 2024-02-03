@@ -18,6 +18,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _weatherImage(int status) {
+    if (status >= 200 && status < 300) {
+      return 1; //thunderstorm
+    } else if (status >= 300 && status < 400) {
+      return 2; //rain
+    } else if (status >= 500 && status < 600) {
+      return 3; //heavy rain
+    } else if (status >= 600 && status < 700) {
+      return 4; //snow
+    } else if (status >= 700 && status < 800) {
+      return 7; //atmosphere
+    } else if (status == 800) {
+      return 6; //clear status
+    } else if (status > 800 && status < 900) {
+      return 8; //clouds
+    } else {
+      return 13;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +114,8 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.w800,
                                 fontSize: 25),
                           ),
-                          Image.asset("assets/1.png"),
+                          Image.asset(
+                              "assets/${_weatherImage(state.weather.weatherConditionCode)}.png"),
                           Center(
                             child: Text(
                               " ${state.weather.temperature!.celsius!.round()} ℃ ", //temperature

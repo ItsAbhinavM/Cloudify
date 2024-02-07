@@ -54,7 +54,8 @@ class _nextDayState extends State<nextDay> {
                   height: 300,
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle, color: Colors.blue),
+                      shape: BoxShape.rectangle,
+                      color: Color.fromARGB(255, 28, 126, 206)),
                 ),
               ),
               Align(
@@ -63,7 +64,8 @@ class _nextDayState extends State<nextDay> {
                   height: 300,
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle, color: Colors.purpleAccent),
+                      shape: BoxShape.rectangle,
+                      color: Color.fromARGB(255, 225, 77, 251)),
                 ),
               ),
               BackdropFilter(
@@ -74,6 +76,7 @@ class _nextDayState extends State<nextDay> {
               ),
               BlocBuilder<ForecastBloc, ForecastState>(
                 builder: (context, state) {
+                  print(state);
                   if (state is ForecastSuccess) {
                     return SingleChildScrollView(
                       child: Column(
@@ -140,7 +143,7 @@ class _nextDayState extends State<nextDay> {
                           Text(
                             '${state}',
                             style: TextStyle(color: Colors.white),
-                          )
+                          ),
                         ],
                       ),
                     );

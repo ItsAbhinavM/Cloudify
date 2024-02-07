@@ -73,9 +73,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            left: 40, right: 1.2 * kToolbarHeight, top: 40, bottom: 20),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+            left: 20, right: 1.2 * kToolbarHeight, top: 40, bottom: 20),
+        child: Expanded(
           child: Stack(
             children: [
               Align(
@@ -156,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Center(
                             child: Text(
-                              " ${state.weather.temperature!.celsius!.round()} ℃ ", //temperature
+                              " ${state.weather.temperature!.celsius!.round()}℃ ", //temperature
                               style: TextStyle(
                                   fontSize: 55,
                                   fontWeight: FontWeight.w900,
@@ -184,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Row(
                             children: [
@@ -224,9 +223,6 @@ class _HomePageState extends State<HomePage> {
                                 },
                               )
                             ],
-                          ),
-                          const SizedBox(
-                            height: 10,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -295,67 +291,67 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             height: 20,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/13.png",
-                                    scale: 8,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Max temp",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      ),
-                                      Text(
-                                        "${state.weather.tempMax!.celsius.round()} ℃ ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 25,
-                              ),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/14.png",
-                                    scale: 8,
-                                  ),
-                                  const SizedBox(
-                                    width: 4,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Min temp",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      ),
-                                      Text(
-                                        "${state.weather.tempMin!.celsius.round()} ℃ ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
-                            ],
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/13.png",
+                                      scale: 8,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Max temp", // max temp
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          "${state.weather.tempMax!.celsius.round()} ℃ ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/14.png",
+                                      scale: 8,
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Min temp", // min temp
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          "${state.weather.tempMin!.celsius.round()} ℃ ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),

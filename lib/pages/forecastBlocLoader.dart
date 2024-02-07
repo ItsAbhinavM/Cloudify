@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,19 +30,45 @@ class forecastLoader extends StatelessWidget {
               if (snap.connectionState == ConnectionState.waiting) {
                 print("loading");
                 return Scaffold(
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: Colors.black,
                   body: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Stack(
                       children: [
+                        Align(
+                          alignment: const AlignmentDirectional(0, -1.2),
+                          child: Container(
+                            height: 300,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                color: Color.fromARGB(255, 28, 126, 206)),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(3, -0.001),
+                          child: Container(
+                            height: 300,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                color: Color.fromARGB(255, 225, 77, 251)),
+                          ),
+                        ),
+                        BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                          child: Container(
+                            decoration:
+                                const BoxDecoration(color: Colors.transparent),
+                          ),
+                        ),
                         SizedBox(
                           height: 310,
                         ),
-                        Lottie.asset("assets/loading_cloud.json"),
+                        Center(
+                            child: Lottie.asset("assets/loading_cloud.json")),
                         SizedBox(
                           height: 100,
                         ),
-                        CircularProgressIndicator()
                       ],
                     ),
                   ),
@@ -49,9 +77,34 @@ class forecastLoader extends StatelessWidget {
                 return Scaffold(
                   backgroundColor: Colors.transparent,
                   body: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Stack(
                       children: [
+                        Align(
+                          alignment: const AlignmentDirectional(0, -1.2),
+                          child: Container(
+                            height: 300,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.rectangle, color: Colors.blue),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(3, -0.001),
+                          child: Container(
+                            height: 300,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                color: Colors.purpleAccent),
+                          ),
+                        ),
+                        BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                          child: Container(
+                            decoration:
+                                const BoxDecoration(color: Colors.transparent),
+                          ),
+                        ),
                         SizedBox(
                           height: 310,
                         ),
@@ -59,7 +112,6 @@ class forecastLoader extends StatelessWidget {
                         SizedBox(
                           height: 100,
                         ),
-                        CircularProgressIndicator()
                       ],
                     ),
                   ),

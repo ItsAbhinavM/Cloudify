@@ -8,7 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:weatherapp/bloc/weather_bloc_bloc.dart';
+import 'package:weatherapp/pages/forecastBlocLoader.dart';
 import 'package:weatherapp/pages/nextDay.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   String _timeWish(String timeString) {
     DateTime time = DateTime.parse(timeString);
     int timeH = int.parse(DateFormat.H().format(time));
-    String period = DateFormat('a').format(time);
+    //String period = DateFormat('a').format(time);
     if (timeH > 5 && timeH < 12) {
       return "Good Morning";
     } else if (timeH > 0 && timeH < 6) {
@@ -123,19 +125,30 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Text(
                                 "📍 ${state.weather.areaName}", //location
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
-                          Text(
-                            _timeWish("${state.weather.date}"), //time wish
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                                fontSize: 34),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                _timeWish("${state.weather.date}"), //time wish
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 34),
+                              ),
+                              Icon(
+                                // Search button
+                                Icons.search,
+                                color: Colors.orange,
+                                size: 49,
+                              )
+                            ],
                           ),
                           Image.asset(
                             "assets/${_weatherImage(state.weather.weatherConditionCode)}.png",
@@ -176,6 +189,14 @@ class _HomePageState extends State<HomePage> {
                           Row(
                             children: [
                               Center(
+                                  child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const forecastLoader()));
+                                },
                                 child: Text(
                                   "Next Days ",
                                   style: TextStyle(
@@ -189,13 +210,18 @@ class _HomePageState extends State<HomePage> {
                                             ]).createShader(const Rect.fromLTRB(
                                             125.0, 100.0, 35.0, 50.0))),
                                 ),
-                              ),
-                              const IconButton(
+                              )),
+                              IconButton(
                                 icon: Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.white,
                                 ),
-                                onPressed: null,
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => nextDay()));
+                                },
                               )
                             ],
                           ),

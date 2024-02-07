@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:weatherapp/bloc/weather_bloc_bloc.dart';
 import 'package:weatherapp/pages/homePage.dart';
 import 'package:geolocator/geolocator.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          fontFamily: null,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
@@ -34,13 +36,44 @@ class MyApp extends StatelessWidget {
               } else {
                 if (snap.connectionState == ConnectionState.waiting) {
                   print("loading");
+                  return Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 310,
+                          ),
+                          Lottie.asset("assets/sun_loading.json"),
+                          SizedBox(
+                            height: 100,
+                          ),
+                          CircularProgressIndicator()
+                        ],
+                      ),
+                    ),
+                  );
+                } else {
+                  return Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 310,
+                          ),
+                          Lottie.asset("assets/sun_loading.json"),
+                          SizedBox(
+                            height: 100,
+                          ),
+                          CircularProgressIndicator()
+                        ],
+                      ),
+                    ),
+                  );
                 }
-                return const Scaffold(
-                  backgroundColor: Colors.transparent,
-                  body: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
               }
             })
 
@@ -63,7 +96,6 @@ Future<Position> _determinePosition() async {
     // accessing the position and request users of the
     // App to enable the location services.
     return Future.error('Location services are disabled.');
-    print("location ;Service is disabled");
   }
 
   permission = await Geolocator.checkPermission();
@@ -76,7 +108,6 @@ Future<Position> _determinePosition() async {
       // returned true. According to Android guidelines
       // your App should show an explanatory UI now.
       return Future.error('Location permissions are denied');
-      print("Permission denied");
     }
   }
 
@@ -84,7 +115,6 @@ Future<Position> _determinePosition() async {
     // Permissions are denied forever, handle appropriately.
     return Future.error(
         'Location permissions are permanently denied, we cannot request permissions.');
-    print("permanent deny");
   }
 
   // When we reach here, permissions are granted and we can

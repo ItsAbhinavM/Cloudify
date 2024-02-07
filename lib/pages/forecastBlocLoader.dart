@@ -36,7 +36,7 @@ class forecastLoader extends StatelessWidget {
                         SizedBox(
                           height: 310,
                         ),
-                        Lottie.asset("assets/sun_loading.json"),
+                        Lottie.asset("assets/loading_cloud.json"),
                         SizedBox(
                           height: 100,
                         ),
@@ -55,7 +55,7 @@ class forecastLoader extends StatelessWidget {
                         SizedBox(
                           height: 310,
                         ),
-                        Lottie.asset("assets/sun_loading.json"),
+                        Lottie.asset("assets/loading_cloud.json"),
                         SizedBox(
                           height: 100,
                         ),

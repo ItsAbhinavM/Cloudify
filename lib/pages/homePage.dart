@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
               BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
                 child: Container(
-                  decoration: BoxDecoration(color: Colors.transparent),
+                  decoration: const BoxDecoration(color: Colors.transparent),
                 ),
               ),
               BlocBuilder<WeatherBlocBloc, WeatherBlocState>(
@@ -136,12 +136,12 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Text(
                                 _timeWish("${state.weather.date}"), //time wish
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w800,
                                     fontSize: 34),
                               ),
-                              Icon(
+                              const Icon(
                                 // Search button
                                 Icons.search,
                                 color: Colors.orange,
@@ -150,13 +150,13 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           Image.asset(
-                            "assets/${_weatherImage(state.weather.weatherConditionCode)}.png",
+                            "assets/${_weatherImage(state.weather.weatherConditionCode)}.png", // weather status image
                             scale: 1,
                           ),
                           Center(
                             child: Text(
                               " ${state.weather.temperature!.celsius!.round()}℃ ", //temperature
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 55,
                                   fontWeight: FontWeight.w900,
                                   color: Colors.white),
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                           Center(
                             child: Text(
                               "${state.weather.weatherMain}", //weather
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 25),
@@ -176,13 +176,13 @@ class _HomePageState extends State<HomePage> {
                               DateFormat('EEEE dd |')
                                   .add_jm()
                                   .format(state.weather.date!), // date and time
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w300,
                                   color: Colors.white),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.white,
                                 ),
@@ -238,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Column(
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Sunrise",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
@@ -247,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         DateFormat().add_jm().format(
                                             state.weather.sunrise!), //sunrise
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: Colors.white),
                                       )
@@ -269,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Column(
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Sunset",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
@@ -278,7 +278,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         DateFormat().add_jm().format(
                                             state.weather.sunset!), //sunset
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: Colors.white),
                                       )
@@ -288,7 +288,7 @@ class _HomePageState extends State<HomePage> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Align(
@@ -307,7 +307,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Column(
                                       children: [
-                                        Text(
+                                        const Text(
                                           "Max temp", // max temp
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
@@ -315,7 +315,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Text(
                                           "${state.weather.tempMax!.celsius.round()} ℃ ",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.white),
                                         )

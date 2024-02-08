@@ -15,6 +15,26 @@ class nextDay extends StatefulWidget {
 }
 
 class _nextDayState extends State<nextDay> {
+  int _weatherConditionImage(int status) {
+    if (status >= 200 && status < 300) {
+      return 1; //thunderstorm
+    } else if (status >= 300 && status < 400) {
+      return 2; //rain
+    } else if (status >= 500 && status < 600) {
+      return 3; //heavy rain
+    } else if (status >= 600 && status < 700) {
+      return 4; //snow
+    } else if (status >= 700 && status < 800) {
+      return 7; //atmosphere
+    } else if (status == 800) {
+      return 6; //clear status
+    } else if (status > 800 && status < 900) {
+      return 8; //clouds
+    } else {
+      return 13;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +100,8 @@ class _nextDayState extends State<nextDay> {
                   if (state is ForecastSuccess) {
                     return SingleChildScrollView(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,20 +131,94 @@ class _nextDayState extends State<nextDay> {
                               )
                             ],
                           ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Today : ",
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                          Container(
+                            height: 170,
+                            width: 500,
+                            child: ListView.builder(
+                                itemCount: 9,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (_, index) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: Colors.grey),
+                                        color: Colors.blue.withOpacity(0.19),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            '${state.forecast[index].date.hour}:${state.forecast[index].date.minute}', // Hour of today
+                                            style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 218, 210, 210),
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                          Text(
+                                            "${state.forecast[index].temperature!.celsius!.round()}℃", // status text
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                          Text(
+                                            "${state.forecast[index].weatherMain}", // status text
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Later this week :",
+                            style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 100,
                               decoration: BoxDecoration(
-                                  border: Border.all(width: 1),
-                                  color: Colors.grey.withOpacity(0.4),
+                                  border:
+                                      Border.all(width: 1, color: Colors.grey),
+                                  color: Colors.blue.withOpacity(0.2),
                                   borderRadius: BorderRadius.circular(20)),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text(
-                                    "15/224/",
+                                  const Text(
+                                    "15/2/24/",
                                     style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.w600,
@@ -130,8 +226,8 @@ class _nextDayState extends State<nextDay> {
                                   ),
                                   Image.asset('assets/9.png'),
                                   Text(
-                                    "22/35",
-                                    style: TextStyle(
+                                    "${state.forecast[0].tempMin}",
+                                    style: const TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white),
@@ -141,8 +237,8 @@ class _nextDayState extends State<nextDay> {
                             ),
                           ),
                           Text(
-                            '${state}',
-                            style: TextStyle(color: Colors.white),
+                            '${state.forecast}',
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ],
                       ),

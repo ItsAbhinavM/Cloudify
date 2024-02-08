@@ -152,42 +152,52 @@ class _nextDayState extends State<nextDay> {
                                 itemCount: 9,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (_, index) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 1, color: Colors.grey),
-                                        color: Colors.blue.withOpacity(0.19),
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            '${state.forecast[index].date.hour}:${state.forecast[index].date.minute}', // Hour of today
-                                            style: const TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 218, 210, 210),
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.w800),
+                                  return Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 1, color: Colors.grey),
+                                            color:
+                                                Colors.blue.withOpacity(0.19),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                '${state.forecast[index].date.hour}:${state.forecast[index].date.minute}', // Hour of today
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 30,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                              Text(
+                                                "${state.forecast[index].temperature!.celsius!.round()}℃", // status text
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 50,
+                                                    fontWeight:
+                                                        FontWeight.w800),
+                                              ),
+                                              Text(
+                                                "${state.forecast[index].weatherMain}", // status text
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
                                           ),
-                                          Text(
-                                            "${state.forecast[index].temperature!.celsius!.round()}℃", // status text
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 35,
-                                                fontWeight: FontWeight.w800),
-                                          ),
-                                          Text(
-                                            "${state.forecast[index].weatherMain}", // status text
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w800),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
+                                      const SizedBox(
+                                        width: 15,
+                                      )
+                                    ],
                                   );
                                 }),
                           ),

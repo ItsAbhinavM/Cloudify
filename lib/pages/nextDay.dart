@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:weatherapp/forecast_bloc/bloc/forecast_bloc.dart';
 
 class nextDay extends StatefulWidget {
@@ -63,7 +64,7 @@ class _nextDayState extends State<nextDay> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
+        padding: const EdgeInsets.only(left: 15.0),
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Stack(
@@ -135,12 +136,25 @@ class _nextDayState extends State<nextDay> {
                             padding: EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: Text(
-                                "Today : ",
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w800,
-                                    color: Colors.white),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Today :  ",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.white),
+                                  ),
+                                  /*Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: Image.asset(
+                                      'assets/5.png',
+                                      height: 50,
+                                    ),
+                                  )*/
+                                ],
                               ),
                             ),
                           ),
@@ -217,38 +231,71 @@ class _nextDayState extends State<nextDay> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 1, color: Colors.grey),
-                                  color: Colors.blue.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  const Text(
-                                    "15/2/24/",
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white),
-                                  ),
-                                  Image.asset('assets/9.png'),
-                                  Text(
-                                    "${state.forecast[0].tempMin}",
-                                    style: const TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
+                              height: MediaQuery.of(context).size.height,
+                              width: 600,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: state.forecast.length,
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 1, color: Colors.grey),
+                                              color:
+                                                  Colors.blue.withOpacity(0.2),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                "${DateFormat('EE').format(state.forecast[index].date)}",
+                                                style: const TextStyle(
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/Humidity.png',
+                                                    height: 40,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 2,
+                                                  ),
+                                                  Text(
+                                                    "${state.forecast[index].humidity.round()}%", // WindSpeed
+                                                    style: const TextStyle(
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                "${state.forecast[index].tempMin!.celsius.round()}/${state.forecast[index].tempMax!.celsius.round()}",
+                                                style: const TextStyle(
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        )
+                                      ],
+                                    );
+                                  }),
                             ),
-                          ),
-                          Text(
-                            '${state.forecast}',
-                            style: const TextStyle(color: Colors.white),
                           ),
                         ],
                       ),

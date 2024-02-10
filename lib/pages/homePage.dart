@@ -69,34 +69,34 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
       ),
       body: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
             left: 20, right: 1.2 * kToolbarHeight, top: 40, bottom: 20),
         child: Expanded(
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(3, -0.3),
+                alignment: const AlignmentDirectional(3, -0.3),
                 child: Container(
                   height: 300,
                   width: 300,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.deepPurple),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-3, -0.3),
+                alignment: const AlignmentDirectional(-3, -0.3),
                 child: Container(
                   height: 300,
                   width: 300,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.deepPurple),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, -1.2),
+                alignment: const AlignmentDirectional(0, -1.2),
                 child: Container(
                   height: 300,
                   width: 600,
@@ -153,6 +153,10 @@ class _HomePageState extends State<HomePage> {
                             "assets/${_weatherImage(state.weather.weatherConditionCode)}.png", // weather status image
                             scale: 1,
                           ),
+                          /*
+                          const SizedBox(
+                            height: 15,
+                          ),*/
                           Center(
                             child: Text(
                               " ${state.weather.temperature!.celsius!.round()}℃ ", //temperature
@@ -185,6 +189,10 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(
                             height: 10,
                           ),
+                          /*
+                          const SizedBox(
+                            height: 60,
+                          ),*/
                           Row(
                             children: [
                               Center(
@@ -219,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) => nextDay()));
+                                          builder: (_) => const nextDay()));
                                 },
                               )
                             ],
@@ -334,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Column(
                                       children: [
-                                        Text(
+                                        const Text(
                                           "Min temp", // min temp
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
@@ -342,7 +350,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Text(
                                           "${state.weather.tempMin!.celsius.round()} ℃ ",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.white),
                                         )

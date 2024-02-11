@@ -36,6 +36,38 @@ class _nextDayState extends State<nextDay> {
     }
   }
 
+  int todayContainerSized(String timeString) {
+    int timeH = int.parse(timeString);
+    int timeRemaining = 23 - timeH;
+    if (timeRemaining == 0) {
+      return 1;
+    } else {
+      return timeRemaining;
+    }
+  }
+
+  int _dayContainerIndexLength(
+      String one, String two, String three, String four) {
+    int One;
+    int Two;
+    int Three;
+    if (one != 'null' && two == 'null' && three == 'null' && four == 'null') {
+      return int.parse(one);
+    } else if (one == 'null' &&
+        two != 'null' &&
+        three == 'null' &&
+        four == 'null') {
+      return int.parse(two);
+    } else if (one == 'null' &&
+        two == 'null' &&
+        three != 'null' &&
+        four == 'null') {
+      return int.parse(three);
+    } else {
+      return int.parse(four);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -228,51 +260,62 @@ class _nextDayState extends State<nextDay> {
                           const SizedBox(
                             height: 15,
                           ),
+                          Text(
+                            "${DateFormat('EE').format(state.forecast[0].date)}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 35,
+                                color: Colors.white),
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: MediaQuery.of(context).size.height,
+                              /*height: (80 *
+                                      todayContainerSized(
+                                          '${state.forecast[0].date.hour}'))
+                                  .toDouble(),*/
+                              height: 80 * 8,
                               width: 600,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: Colors.grey),
+                                  color: Colors.blue.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(20)),
                               child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: state.forecast.length,
+                                  itemCount: 8,
                                   scrollDirection: Axis.vertical,
-                                  itemBuilder: (context, index) {
+                                  itemBuilder: (context, Index) {
+                                    final index = Index +
+                                        _dayContainerIndexLength(
+                                            (todayContainerSized(
+                                                    '${state.forecast[0].date.hour}'))
+                                                .toString(),
+                                            'null',
+                                            'null',
+                                            'null');
                                     return Column(
                                       children: [
                                         Container(
                                           height: 80,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  width: 1, color: Colors.grey),
-                                              color:
-                                                  Colors.blue.withOpacity(0.2),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               Text(
-                                                "${DateFormat('EE').format(state.forecast[index].date)}",
+                                                "${state.forecast[index].date.hour}:${state.forecast[index].date.minute}",
                                                 style: const TextStyle(
-                                                    fontSize: 25,
+                                                    fontSize: 27,
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors.white),
                                               ),
                                               Row(
                                                 children: [
-                                                  Image.asset(
-                                                    'assets/Humidity.png',
-                                                    height: 40,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 2,
-                                                  ),
                                                   Text(
-                                                    "${state.forecast[index].humidity.round()}%", // WindSpeed
+                                                    "${state.forecast[index].temperature!.celsius!.round()}℃", // WindSpeed
                                                     style: const TextStyle(
-                                                        fontSize: 25,
+                                                        fontSize: 35,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         color: Colors.white),
@@ -280,7 +323,7 @@ class _nextDayState extends State<nextDay> {
                                                 ],
                                               ),
                                               Text(
-                                                "${state.forecast[index].tempMin!.celsius.round()}/${state.forecast[index].tempMax!.celsius.round()}",
+                                                "${state.forecast[index].weatherMain}",
                                                 style: const TextStyle(
                                                     fontSize: 25,
                                                     fontWeight: FontWeight.w600,
@@ -296,6 +339,13 @@ class _nextDayState extends State<nextDay> {
                                     );
                                   }),
                             ),
+                          ),
+                          Text(
+                            "${DateFormat('EE').format(state.forecast[1].date)}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 35,
+                                color: Colors.white),
                           ),
                         ],
                       ),

@@ -53,18 +53,23 @@ class _nextDayState extends State<nextDay> {
     int Three;
     if (one != 'null' && two == 'null' && three == 'null' && four == 'null') {
       return int.parse(one);
-    } else if (one == 'null' &&
+    } else if (one != 'null' &&
         two != 'null' &&
         three == 'null' &&
         four == 'null') {
-      return int.parse(two);
-    } else if (one == 'null' &&
+      return int.parse(one + '8');
+    } else if (one != 'null' &&
         two == 'null' &&
         three != 'null' &&
         four == 'null') {
-      return int.parse(three);
+      return int.parse(one) + 16;
+    } else if (one != 'null' &&
+        two == 'null' &&
+        three == 'null' &&
+        four != 'null') {
+      return int.parse(one) + 25;
     } else {
-      return int.parse(four);
+      return int.parse(one);
     }
   }
 
@@ -261,12 +266,12 @@ class _nextDayState extends State<nextDay> {
                             height: 15,
                           ),
                           Text(
-                            "${DateFormat('EE').format(state.forecast[0].date)}",
+                            "Mon", //${DateFormat('EE').format(state.forecast[0].date)}
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 35,
                                 color: Colors.white),
-                          ),
+                          ), //Second Day
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -284,7 +289,7 @@ class _nextDayState extends State<nextDay> {
                               child: ListView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: 8,
+                                  itemCount: 10,
                                   scrollDirection: Axis.vertical,
                                   itemBuilder: (context, Index) {
                                     final index = Index +
@@ -341,12 +346,248 @@ class _nextDayState extends State<nextDay> {
                             ),
                           ),
                           Text(
-                            "${DateFormat('EE').format(state.forecast[1].date)}",
+                            "TUE",
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 35,
                                 color: Colors.white),
                           ),
+                          //Third day
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              /*height: (80 *
+                                      todayContainerSized(
+                                          '${state.forecast[0].date.hour}'))
+                                  .toDouble(),*/
+                              height: 80 * 8,
+                              width: 600,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: Colors.grey),
+                                  color: Colors.blue.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 9,
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, Index) {
+                                    final index = Index +
+                                        _dayContainerIndexLength(
+                                            (todayContainerSized(
+                                                    '${state.forecast[0].date.hour}'))
+                                                .toString(),
+                                            'nill',
+                                            'null',
+                                            'null');
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          height: 80,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                "${state.forecast[index].date.hour}:${state.forecast[index].date.minute}",
+                                                style: const TextStyle(
+                                                    fontSize: 27,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "${state.forecast[index].temperature!.celsius!.round()}℃", // WindSpeed
+                                                    style: const TextStyle(
+                                                        fontSize: 35,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                "${state.forecast[index].weatherMain}",
+                                                style: const TextStyle(
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        )
+                                      ],
+                                    );
+                                  }),
+                            ),
+                          ),
+                          Text(
+                            "WED",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 35,
+                                color: Colors.white),
+                          ),
+                          //Fourth day
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              /*height: (80 *
+                                      todayContainerSized(
+                                          '${state.forecast[0].date.hour}'))
+                                  .toDouble(),*/
+                              height: 80 * 8,
+                              width: 600,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: Colors.grey),
+                                  color: Colors.blue.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 9,
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, Index) {
+                                    final index = Index +
+                                        _dayContainerIndexLength(
+                                            (todayContainerSized(
+                                                    '${state.forecast[0].date.hour}'))
+                                                .toString(),
+                                            'null',
+                                            'nill',
+                                            'null');
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          height: 80,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                "${state.forecast[index].date.hour}:${state.forecast[index].date.minute}",
+                                                style: const TextStyle(
+                                                    fontSize: 27,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "${state.forecast[index].temperature!.celsius!.round()}℃", // WindSpeed
+                                                    style: const TextStyle(
+                                                        fontSize: 35,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                "${state.forecast[index].weatherMain}",
+                                                style: const TextStyle(
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        )
+                                      ],
+                                    );
+                                  }),
+                            ),
+                          ),
+                          Text(
+                            "THU",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 35,
+                                color: Colors.white),
+                          ),
+                          //Fourth day
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              /*height: (80 *
+                                      todayContainerSized(
+                                          '${state.forecast[0].date.hour}'))
+                                  .toDouble(),*/
+                              height: 80 * 8,
+                              width: 600,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: Colors.grey),
+                                  color: Colors.blue.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 9,
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, Index) {
+                                    final index = Index +
+                                        _dayContainerIndexLength(
+                                            (todayContainerSized(
+                                                    '${state.forecast[0].date.hour}'))
+                                                .toString(),
+                                            'null',
+                                            'null',
+                                            'nill');
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          height: 80,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                "${state.forecast[index].date.hour}:${state.forecast[index].date.minute}",
+                                                style: const TextStyle(
+                                                    fontSize: 27,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "${state.forecast[index].temperature!.celsius!.round()}℃", // WindSpeed
+                                                    style: const TextStyle(
+                                                        fontSize: 35,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                "${state.forecast[index].weatherMain}",
+                                                style: const TextStyle(
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        )
+                                      ],
+                                    );
+                                  }),
+                            ),
+                          )
                         ],
                       ),
                     );

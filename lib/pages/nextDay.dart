@@ -57,7 +57,7 @@ class _nextDayState extends State<nextDay> {
         two != 'null' &&
         three == 'null' &&
         four == 'null') {
-      return int.parse(one + '8');
+      return int.parse(one) + 8;
     } else if (one != 'null' &&
         two == 'null' &&
         three != 'null' &&
@@ -265,9 +265,9 @@ class _nextDayState extends State<nextDay> {
                           const SizedBox(
                             height: 15,
                           ),
-                          Text(
+                          const Text(
                             "Mon", //${DateFormat('EE').format(state.forecast[0].date)}
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 35,
                                 color: Colors.white),
@@ -345,9 +345,9 @@ class _nextDayState extends State<nextDay> {
                                   }),
                             ),
                           ),
-                          Text(
+                          const Text(
                             "TUE",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 35,
                                 color: Colors.white),
@@ -426,9 +426,9 @@ class _nextDayState extends State<nextDay> {
                                   }),
                             ),
                           ),
-                          Text(
+                          const Text(
                             "WED",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 35,
                                 color: Colors.white),
@@ -507,9 +507,9 @@ class _nextDayState extends State<nextDay> {
                                   }),
                             ),
                           ),
-                          Text(
+                          const Text(
                             "THU",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 35,
                                 color: Colors.white),

@@ -42,11 +42,11 @@ class MyApp extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 310,
                           ),
                           Lottie.asset("assets/sun_loading.json"),
-                          SizedBox(
+                          const SizedBox(
                             height: 100,
                           ),
                           CircularProgressIndicator()

@@ -157,9 +157,9 @@ class _HomePageState extends State<HomePage> {
                               scale: 1,
                             ),
                             //for 6.7 inch
-                            const SizedBox(
+                            /*const SizedBox(
                               height: 15,
-                            ),
+                            ),*/
                             Center(
                               child: Text(
                                 " ${state.weather.temperature!.celsius!.round()}℃ ", //temperature
@@ -188,12 +188,12 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white),
                               ),
                             ),
-                            /*const SizedBox(
-                              height: 10,
-                            ),*/
                             const SizedBox(
-                              height: 60,
+                              height: 10,
                             ),
+                            /*const SizedBox(
+                              height: 60,
+                            ),*/
                             Row(
                               children: [
                                 Center(

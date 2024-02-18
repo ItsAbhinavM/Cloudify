@@ -74,6 +74,18 @@ class _nextDayState extends State<nextDay> {
     }
   }
 
+  int dayDecider(String one, String two, String three) {
+    if (one != 'null' && two == 'null' && three == 'null') {
+      return int.parse(one) + 7;
+    } else if (one == 'null' && two != 'null' && three == 'null') {
+      return int.parse(two) + 15;
+    } else if (one == 'null' && two == 'null' && three != 'null') {
+      return int.parse(three) + 22;
+    } else {
+      return 0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,15 +182,13 @@ class _nextDayState extends State<nextDay> {
                               )
                             ],
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: Row(
                                 children: [
                                   Text(
-                                      '${DateFormat('EEEE').format(state.forecast[0].date!)}'),
-                                  const Text(
                                     "Next 24Hrs :  ",
                                     style: TextStyle(
                                         fontSize: 30,
@@ -268,13 +278,12 @@ class _nextDayState extends State<nextDay> {
                           const SizedBox(
                             height: 15,
                           ),
-                          const Text(
-                            "Mon", //${DateFormat('EE').format(state.forecast[0].date)}
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 35,
-                                color: Colors.white),
-                          ), //Second Day
+                          Text(
+                              '${DateFormat('EEEE').format(state.forecast[dayDecider((todayContainerSized('${state.forecast[0].date.hour}').toString()), 'null', 'null')].date!)}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 35,
+                                  color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -282,7 +291,7 @@ class _nextDayState extends State<nextDay> {
                                       todayContainerSized(
                                           '${state.forecast[0].date.hour}'))
                                   .toDouble(),*/
-                              height: 80 * 9,
+                              height: 83 * 9,
                               width: 600,
                               decoration: BoxDecoration(
                                   border:
@@ -348,13 +357,12 @@ class _nextDayState extends State<nextDay> {
                                   }),
                             ),
                           ),
-                          const Text(
-                            "TUE",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 35,
-                                color: Colors.white),
-                          ),
+                          Text(
+                              '${DateFormat('EEEE').format(state.forecast[dayDecider('null', (todayContainerSized('${state.forecast[0].date.hour}').toString()), 'null')].date!)}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 35,
+                                  color: Colors.white)),
                           //Third day
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -429,13 +437,12 @@ class _nextDayState extends State<nextDay> {
                                   }),
                             ),
                           ),
-                          const Text(
-                            "WED",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 35,
-                                color: Colors.white),
-                          ),
+                          Text(
+                              '${DateFormat('EEEE').format(state.forecast[dayDecider('null', 'null', (todayContainerSized('${state.forecast[0].date.hour}').toString()))].date!)}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 35,
+                                  color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(

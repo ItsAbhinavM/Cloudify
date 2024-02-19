@@ -144,12 +144,6 @@ class _HomePageState extends State<HomePage> {
                                       fontWeight: FontWeight.w800,
                                       fontSize: 34),
                                 ),
-                                const Icon(
-                                  // Search button
-                                  Icons.search,
-                                  color: Colors.white,
-                                  size: 49,
-                                )
                               ],
                             ),
                             Image.asset(

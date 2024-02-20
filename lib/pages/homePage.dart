@@ -399,7 +399,8 @@ class _HomePageState extends State<HomePage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (_) => const MapSample()));
+                                            builder: (_) =>
+                                                const MapConsole()));
                                   },
                                 )
                               ],
@@ -414,7 +415,7 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) => const MapSample()));
+                                          builder: (_) => const MapConsole()));
                                 },
                                 child: Container(
                                   height: 80,

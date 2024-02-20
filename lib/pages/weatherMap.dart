@@ -42,10 +42,19 @@ class MapSampleState extends State<MapSample> {
         initialCameraPosition: initialPosition,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
-          _initTiles(); // Call this after the map controller is initialized
+          _initTiles();
         },
         tileOverlays: _tileOverlays,
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blue,
+        onPressed: () => Navigator.pop(context),
+        label: Icon(
+          Icons.home,
+          color: Colors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 }

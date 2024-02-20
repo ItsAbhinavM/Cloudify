@@ -10,7 +10,7 @@ class ForecastTileProvider implements TileProvider {
 
     try {
       final url =
-          'https://tile.openweathermap.org/map/precipitation_new/$zoom/$x/$y.png?appid=${mapApikey}';
+          'https://tile.openweathermap.org/map/pressure_new/$zoom/$x/$y.png?appid=${mapApikey}';
       final uri = Uri.parse(url);
       final imageData = await NetworkAssetBundle(uri).load("");
       tileBytes = imageData.buffer.asUint8List();

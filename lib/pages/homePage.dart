@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weatherapp/bloc/weather_bloc_bloc.dart';
 import 'package:weatherapp/pages/forecastBlocLoader.dart';
+import 'package:weatherapp/pages/mapConsole.dart';
 import 'package:weatherapp/pages/nextDay.dart';
 import 'package:weatherapp/pages/weatherMap.dart';
 
@@ -370,7 +371,8 @@ class _HomePageState extends State<HomePage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (_) => const MapSample()));
+                                            builder: (_) =>
+                                                const MapConsole()));
                                   },
                                   child: Text(
                                     "View on Map",

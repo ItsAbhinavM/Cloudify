@@ -8,12 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:weatherapp/bloc/weather_bloc_bloc.dart';
 import 'package:weatherapp/pages/forecastBlocLoader.dart';
 import 'package:weatherapp/pages/mapConsole.dart';
-import 'package:weatherapp/pages/nextDay.dart';
-import 'package:weatherapp/pages/weatherMap.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

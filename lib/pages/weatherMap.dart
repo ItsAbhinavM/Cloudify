@@ -7,7 +7,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:weatherapp/map/forecastTileProvider.dart';
 
 class MapSample extends StatefulWidget {
-  const MapSample({super.key});
+  final String mapTile;
+
+  const MapSample(this.mapTile, {super.key});
 
   @override
   State<MapSample> createState() => MapSampleState();
@@ -34,7 +36,7 @@ class MapSampleState extends State<MapSample> {
     const String overlayId = 'weather_overlay'; // Use a static overlay ID
     final tileOverlay = TileOverlay(
       tileOverlayId: TileOverlayId(overlayId),
-      tileProvider: ForecastTileProvider(),
+      tileProvider: ForecastTileProvider(displayMapTile: widget.mapTile),
     );
     setState(() {
       _tileOverlays = {tileOverlay};

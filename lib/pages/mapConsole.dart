@@ -7,6 +7,11 @@ import 'package:lottie/lottie.dart';
 import 'package:weatherapp/pages/weatherMap.dart';
 
 class MapConsole extends StatelessWidget {
+  final String temperature = "temp_new";
+  final String precipitation = "precipitation_new";
+  final String clouds = "clouds_new";
+  final String windSpeed = "wind_new";
+  final String seaLevelPressure = "pressure_new";
   const MapConsole({super.key});
 
   @override
@@ -106,7 +111,7 @@ class MapConsole extends StatelessWidget {
                         onTap: () => (Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MapSample()))),
+                                builder: (context) => MapSample(temperature)))),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(width: 4, color: Colors.white),
@@ -153,7 +158,8 @@ class MapConsole extends StatelessWidget {
                           onTap: () => (Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MapSample()))),
+                                  builder: (context) =>
+                                      MapSample(precipitation)))),
                           child: Container(
                             height: 150,
                             width: MediaQuery.of(context).size.width - 30,
@@ -191,7 +197,7 @@ class MapConsole extends StatelessWidget {
                         onTap: () => (Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MapSample()))),
+                                builder: (context) => MapSample(clouds)))),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(width: 4, color: Colors.white),
@@ -238,7 +244,7 @@ class MapConsole extends StatelessWidget {
                           onTap: () => (Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MapSample()))),
+                                  builder: (context) => MapSample(windSpeed)))),
                           child: Container(
                             height: 150,
                             width: MediaQuery.of(context).size.width - 30,
@@ -275,7 +281,8 @@ class MapConsole extends StatelessWidget {
                         onTap: () => (Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MapSample()))),
+                                builder: (context) =>
+                                    MapSample(seaLevelPressure)))),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(width: 4, color: Colors.white),

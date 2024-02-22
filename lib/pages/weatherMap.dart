@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -90,7 +89,7 @@ class MapSampleState extends State<MapSample> {
           .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
               target: LatLng(
                   _currentPosition!.latitude, _currentPosition!.longitude),
-              zoom: 8))));
+              zoom: 3))));
     }
   }
 

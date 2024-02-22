@@ -113,22 +113,15 @@ class MapConsole extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => MapSample(temperature)))),
                         child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 4, color: Colors.white),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Container(
-                              height: 150,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 1, color: Colors.white),
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  image: const DecorationImage(
-                                      image:
-                                          AssetImage('assets/temperature.jpg'),
-                                      fit: BoxFit.cover))),
-                        ),
+                            height: 150,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 1, color: Colors.white),
+                                borderRadius: BorderRadius.circular(15.0),
+                                image: const DecorationImage(
+                                    image: AssetImage('assets/temperature.jpg'),
+                                    fit: BoxFit.cover))),
                       ),
                     ),
                     const SizedBox(

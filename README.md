@@ -1,4 +1,4 @@
-# Weather App
+# Cloudify
 A robust and informative Flutter app that empowers users to stay on top of weather conditions near them and around the globe.
 
 ## Key Features:

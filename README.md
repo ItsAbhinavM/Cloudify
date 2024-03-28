@@ -27,10 +27,6 @@ A robust and informative Flutter app that empowers users to stay on top of weath
    - Android: `flutter run`
    - iOS: `flutter run --target-platform ios`
 
-## Contribution:
-
-We welcome contributions to this project! Please submit pull requests for bug fixes, feature enhancements, or code improvements. Make sure to follow the contribution guidelines to ensure a smooth merging process.
-
 ## Additional Notes:
 
 - Adapt the content to accurately reflect your project's specific features and implementation details.
